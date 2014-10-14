@@ -8,22 +8,18 @@ from redturtle.video.tests.base import TestRequest
 from redturtle.video.remote_thumb import RemoteThumb
 from redturtle.video.interfaces import IVideoEmbedCode
 
-from collective.rtvideo.youtube.tests.base import RemoteVideo
-from collective.rtvideo.youtube.tests.base import TestCase
-from collective.rtvideo.youtube.tests.base import ShortUrlRemoteVideo
+from collective.rtvideo.senapetv.tests.base import RemoteVideo
+from collective.rtvideo.senapetv.tests.base import TestCase
 
 class TestGetThumb(TestCase):
 
-    def test_get_thumb_for_classic_url(self):
-        """
-        Try the method with classic youtube.com url
-        """
+    def test_get_thumb(self):
         remote_video = RemoteVideo()
         adapter = getMultiAdapter((remote_video, TestRequest()),
                                    IVideoEmbedCode,
-                                   name = 'youtube.com')
+                                   name = 'stream.senape.tv')
 
-        video_id = 's43WGi_QZEE'
+        video_id = 'UUTX7TJLBL68'
         thumb_obj = adapter.getThumb()
 
         self.assertEqual('image/jpeg',
@@ -32,30 +28,7 @@ class TestGetThumb(TestCase):
         self.assertEqual('%s-image.jpg'%video_id,
                          thumb_obj.filename)
 
-        self.assertEqual('http://img.youtube.com/vi/%s/0.jpg'%video_id,
-                         thumb_obj.url)
-
-        self.assertTrue(isinstance(thumb_obj, RemoteThumb))
-
-    def test_get_thumb_for_short_url(self):
-        """
-        Try the method with the short youtu.be url
-        """
-        remote_video = ShortUrlRemoteVideo()
-        adapter = getMultiAdapter((remote_video, TestRequest()),
-                                   IVideoEmbedCode,
-                                   name = 'youtu.be')
-
-        video_id = 's43WGi_QZEE'
-        thumb_obj = adapter.getThumb()
-
-        self.assertEqual('image/jpeg',
-                         thumb_obj.content_type)
-
-        self.assertEqual('%s-image.jpg'%video_id,
-                         thumb_obj.filename)
-
-        self.assertEqual('http://img.youtube.com/vi/%s/0.jpg'%video_id,
+        self.assertEqual('http://stream.senape.tv/statics/video/wall/%s.jpg'%video_id,
                          thumb_obj.url)
 
         self.assertTrue(isinstance(thumb_obj, RemoteThumb))
