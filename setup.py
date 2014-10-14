@@ -5,19 +5,22 @@ version = '1.0'
 
 setup(name='collective.rtvideo.senapetv',
       version=version,
-      description="",
-      long_description=open("README.txt").read() + "\n" +
+      description="The Senape.tv Plone support for RedTurtle Video",
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
         "Framework :: Plone",
+        "Framework :: Plone :: 4.2",
         "Programming Language :: Python",
+        "Topic :: Multimedia :: Video",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
         ],
-      keywords='',
-      author='',
-      author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      keywords='plone plonegov video embed senapetv',
+      author='RedTurtle Technology',
+      author_email='sviluppoplone@redturtle.it',
+      url='http://plone.org/products/redturtle.video',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective', 'collective.rtvideo'],
@@ -25,7 +28,7 @@ setup(name='collective.rtvideo.senapetv',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'redturtle.video>=0.8.0',
       ],
       entry_points="""
       # -*- Entry points: -*-

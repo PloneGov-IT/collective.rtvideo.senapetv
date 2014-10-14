@@ -3,6 +3,16 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="collective.rtvideo.senapetv">
 
-  <five:registerPackage package="." initialize=".initialize" />
+  <include package="redturtle.video" />
+  <include package=".browser" />
+
+  <adapter
+      for = "redturtle.video.interfaces.IRTRemoteVideo
+             zope.publisher.interfaces.browser.IHTTPRequest"
+      provides = "redturtle.video.interfaces.IVideoEmbedCode"
+      factory = "collective.rtvideo.senapetv.browser.videoembedcode.ClassicSenapeTvEmbedCode"
+      name= "stream.senape.tv"
+  />
+
 
 </configure>
