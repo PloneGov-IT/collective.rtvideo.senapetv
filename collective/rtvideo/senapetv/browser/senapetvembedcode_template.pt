@@ -1,0 +1,14 @@
+<div class="senapetvEmbedWrapper">
+<iframe name="UUTX7TJLBL68"
+        class="senape-widget-video-player-container"
+        width="560"
+        height="315"
+        marginwidth="0"
+        marginheight="0"
+        frameborder="0"
+        scrolling="no"
+        tal:attributes="width  view/getWidth;
+                        height view/getHeight;
+                        src    view/getEmbedVideoLink">
+</iframe>
+</div>
