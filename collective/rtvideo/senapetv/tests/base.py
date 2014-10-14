@@ -34,10 +34,10 @@ def setup_product():
     # This can of course use <include /> to include other packages.
 
     fiveconfigure.debug_mode = True
-    import collective.rtvideo.youtube
+    import collective.rtvideo.senapetv
     import redturtle.video
     zcml.load_config('configure.zcml', redturtle.video)
-    zcml.load_config('configure.zcml', collective.rtvideo.youtube)
+    zcml.load_config('configure.zcml', collective.rtvideo.senapetv)
     fiveconfigure.debug_mode = False
 
     # We need to tell the testing framework that these products
@@ -52,14 +52,14 @@ def setup_product():
     #   ztc.installPackage('borg.localrole')
 
     ztc.installPackage('redturtle.video')
-    ztc.installPackage('collective.rtvideo.youtube')
+    ztc.installPackage('collective.rtvideo.senapetv')
 
 # The order here is important: We first call the (deferred) function
 # which installs the products we need for this product. Then, we let
 # PloneTestCase set up this product on installation.
 
 setup_product()
-ptc.setupPloneSite(products=['redturtle.video', 'collective.rtvideo.youtube'])
+ptc.setupPloneSite(products=['redturtle.video', 'collective.rtvideo.senapetv'])
 
 class TestRequest(BaseTestRequest):
     implements(IHTTPRequest)
@@ -83,17 +83,7 @@ class RemoteVideo(object):
     We provide a fake video for test
     """
     implements(IRTRemoteVideo)
-    remoteUrl = 'http://www.youtube.com/watch?v=s43WGi_QZEE&feature=related'
-
-    def getRemoteUrl(self):
-        return self.remoteUrl
-
-class ShortUrlRemoteVideo(object):
-    """
-    We provide a fake video for test
-    """
-    implements(IRTRemoteVideo)
-    remoteUrl = 'http://youtu.be/s43WGi_QZEE'
+    remoteUrl = 'http://stream.senape.tv/landing/regioneal/video/AMTE7A3MSLNR'
 
     def getRemoteUrl(self):
         return self.remoteUrl
