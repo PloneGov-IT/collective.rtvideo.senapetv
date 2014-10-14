@@ -2,7 +2,7 @@
 
 import unittest
 from zope.testing import doctest
-import collective.rtvideo.youtube.browser.videoembedcode
+import collective.rtvideo.senapetv.browser.videoembedcode
 
 import zope.component
 import redturtle.video.interfaces
@@ -21,25 +21,17 @@ def setUp(test):
         )
 
     zope.component.provideAdapter(
-            collective.rtvideo.youtube.browser.videoembedcode.ClassicYoutubeEmbedCode,
+            collective.rtvideo.senapetv.browser.videoembedcode.ClassicSenapeTvEmbedCode,
             (redturtle.video.interfaces.IRTRemoteVideo,
              zope.publisher.interfaces.browser.IHTTPRequest),
             provides=redturtle.video.interfaces.IVideoEmbedCode,
-            name='youtube.com'
-        )
-
-    zope.component.provideAdapter(
-            collective.rtvideo.youtube.browser.videoembedcode.ShortYoutubeEmbedCode,
-            (redturtle.video.interfaces.IRTRemoteVideo,
-             zope.publisher.interfaces.browser.IHTTPRequest),
-            provides=redturtle.video.interfaces.IVideoEmbedCode,
-            name='youtu.be'
+            name='stream.senape.tv'
         )
 
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocTestSuite(collective.rtvideo.youtube.browser.videoembedcode,
+        doctest.DocTestSuite(collective.rtvideo.senapetv.browser.videoembedcode,
                      setUp=setUp,
                      optionflags=doctest.REPORT_ONLY_FIRST_FAILURE | doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,),
         ))
