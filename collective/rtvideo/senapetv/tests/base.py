@@ -83,7 +83,7 @@ class RemoteVideo(object):
     We provide a fake video for test
     """
     implements(IRTRemoteVideo)
-    remoteUrl = 'http://stream.senape.tv/landing/regioneal/video/AMTE7A3MSLNR'
+    remoteUrl = 'http://stream.senape.tv/landing/regioneal/video/UUTX7TJLBL68'
 
     def getRemoteUrl(self):
         return self.remoteUrl
