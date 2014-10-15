@@ -32,21 +32,21 @@ class SenapeTvBase(object):
 
 
 class ClassicSenapeTvEmbedCode(SenapeTvBase, VideoEmbedCode):
-    """ClassicYoutubeEmbedCode
-    Provides a way to have a html code to embed Youtube video in a web page
+    """ClassicSenapeTvEmbedCode
+    Provides a way to have a html code to embed Senape.tv video in a web page
 
     >>> from zope.interface import implements
     >>> from redturtle.video.interfaces import IRTRemoteVideo
     >>> from redturtle.video.interfaces import IVideoEmbedCode
     >>> from zope.component import getMultiAdapter
-    >>> from collective.rtvideo.youtube.tests.base import TestRequest
+    >>> from collective.rtvideo.senapetv.tests.base import TestRequest
 
     >>> request = TestRequest()
 
     >>> class RemoteVideo(object):
     ...     implements(IRTRemoteVideo)
-    ...     remoteUrl = 'http://www.youtube.com/watch?v=s43WGi_QZEE&feature=related'
-    ...     size = {'width': 425, 'height': 349}
+    ...     remoteUrl = 'http://stream.senape.tv/landing/regioneal/video/UUTX7TJLBL68'
+    ...     size = {'width': 640, 'height': 360}
     ...     def getRemoteUrl(self):
     ...         return self.remoteUrl
     ...     def getWidth(self):
@@ -57,55 +57,22 @@ class ClassicSenapeTvEmbedCode(SenapeTvBase, VideoEmbedCode):
     >>> remotevideo = RemoteVideo()
     >>> adapter = getMultiAdapter((remotevideo, request),
     ...                                         IVideoEmbedCode,
-    ...                                         name = 'youtube.com')
+    ...                                         name = 'stream.senape.tv')
     >>> adapter.getVideoLink()
-    'http://www.youtube.com/embed/s43WGi_QZEE'
+    'http://stream.senape.tv/widget/video.action?do=iframe&v=2.0&uid=UUTX7TJLBL68&rid=regioneal'
 
     >>> print adapter()
-    <div class="youtubeEmbedWrapper">
+    <div class="senapetvEmbedWrapper">
     <BLANKLINE>
-    <iframe width="425"
-            height="349"
+    <iframe name="UUTX7TJLBL68"
+            class="senape-widget-video-player-container"
+            width="640"
+            height="360"
+            marginwidth="0"
+            marginheight="0"
             frameborder="0"
-            allowfullscreen
-            src="http://www.youtube.com/embed/s43WGi_QZEE">
-    </iframe>
-    </div>
-    <BLANKLINE>
-
-    Now check if the autoplay parameter is taken used when putted into the video source URL.
-
-    >>> remotevideo.remoteUrl += '?AUTOPLAY=1'
-    >>> print adapter()
-    <div class="youtubeEmbedWrapper">
-    <iframe width="425"
-            height="349"
-            frameborder="0"
-            allowfullscreen
-            src="http://www.youtube.com/embed/s43WGi_QZEE?autoplay=1&amp;enablejsapi=1">
-    </iframe>
-    </div>
-    <BLANKLINE>
-
-    If the request URL is provided with a "autoplay=1" parameter, autoplay and accessibility/usability
-    tricks are included
-
-    >>> request.QUERY_STRING = '?foo=5&autoplay=1&bar=7'
-    >>> print adapter()
-    <div class="youtubeEmbedWrapper">
-    <script type="text/javascript">
-    <!--
-    function onYouTubePlayerReady() {
-        document.getElementById('youtubeVideo').focus();
-    }
-    //-->
-    </script>
-    <iframe width="425"
-            height="349"
-            frameborder="0"
-            allowfullscreen
-            src="http://www.youtube.com/embed/s43WGi_QZEE?autoplay=1&amp;enablejsapi=1"
-            tabindex="1">
+            scrolling="no"
+            src="http://stream.senape.tv/widget/video.action?do=iframe&v=2.0&uid=UUTX7TJLBL68&rid=regioneal">
     </iframe>
     </div>
     <BLANKLINE>
