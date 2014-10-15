@@ -59,7 +59,7 @@ class ClassicSenapeTvEmbedCode(SenapeTvBase, VideoEmbedCode):
     ...                                         IVideoEmbedCode,
     ...                                         name = 'stream.senape.tv')
     >>> adapter.getVideoLink()
-    'http://stream.senape.tv/widget/video.action?do=iframe&v=2.0&uid=UUTX7TJLBL68&rid=regioneal'
+    'http://stream.senape.tv/widget/video.action?do=iframe&v=2.0&uid=regioneal&rid=UUTX7TJLBL68'
 
     >>> print adapter()
     <div class="senapetvEmbedWrapper">
@@ -72,7 +72,7 @@ class ClassicSenapeTvEmbedCode(SenapeTvBase, VideoEmbedCode):
             marginheight="0"
             frameborder="0"
             scrolling="no"
-            src="http://stream.senape.tv/widget/video.action?do=iframe&v=2.0&uid=UUTX7TJLBL68&rid=regioneal">
+            src="http://stream.senape.tv/widget/video.action?do=iframe&amp;v=2.0&amp;uid=regioneal&amp;rid=UUTX7TJLBL68">
     </iframe>
     </div>
     <BLANKLINE>
