@@ -100,3 +100,7 @@ class ClassicSenapeTvEmbedCode(SenapeTvBase, VideoEmbedCode):
             return path.split('/video/')[1]
         except IndexError:
             return ''
+
+    def get_video_name(self):
+        parsed_remote_url = urlparse(self.context.getRemoteUrl())
+        return self.get_video_id(parsed_remote_url)
